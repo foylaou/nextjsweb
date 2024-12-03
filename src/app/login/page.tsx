@@ -53,7 +53,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 
     if (!response.ok) {
       const errorData = await response.json();
-      setError(errorData.error || 'Invalid credentials. Please try again.');
+      setError(errorData.error || '認證錯誤，請重新嘗試');
       return;
     }
     console.log(response);
@@ -66,11 +66,11 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       window.alert("sucessfully logged in");
       router.push('/home');
     } else {
-      setError('Invalid credentials. Please try again.');
+      setError('認證錯誤，請重新嘗試');
     }
   } catch (error) {
-    console.error('Login error:', error);
-    setError('Login failed. Please check your connection and try again.');
+    console.error('登入異常，異常說明:', error);
+    setError('登入失敗，請檢查您的網路連線');
   } finally {
     setIsLoading(false);
   }
@@ -146,7 +146,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
               disabled={isLoading}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-400"
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? '登入中...' : '登入'}
             </button>
           </div>
         </form>
