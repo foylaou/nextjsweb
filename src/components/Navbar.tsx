@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, Menu, X, LogOut } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
+
 
 // Types for navigation items
 interface NavItem {
@@ -16,107 +16,24 @@ interface NavItem {
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isAuthenticated, userEmail, logout } = useAuth();
 
-  // 因為目前 AuthContext 中沒有 userAuthorities，我們先模擬一個假的權限檢查
-  // 實際應用中，你需要從後端 API 獲取這些權限信息
-  const mockAuthorities = {
-    Sys: 'admin',
-    Audit: 'admin',
-    KPI: 'admin',
-    Org: 'admin'
-  };
-
-  // Helper function to check authority
-  const hasAuthority = (requiredAuthority: keyof typeof mockAuthorities) => {
-    return mockAuthorities[requiredAuthority]?.toUpperCase() !== 'NONE';
-  };
 
   const navigationItems: NavItem[] = [
     { name: "首頁", href: "/home" },
-    ...(isAuthenticated ? [
-      {
-        name: "功能模組",
-        href: "#",
-        children: [
-          ...(hasAuthority('Audit') ? [{
-            name: "石化督導",
-            href: "#",
-            children: [
-              {
-                name: "石化督導資料設定",
-                href: "#",
-                children: [
-                  { name: "督導資料建立", href: "/audit/create-audit" },
-                  { name: "督導廠資料管理", href: "/audit/query-factory" }
-                ]
-              },
-              { name: "石化督導資料綜合查詢", href: "/audit" },
-              {
-                name: "報表",
-                href: "#",
-                children: [
-                  { name: "石化督導改善建議分類統計圖", href: "/audit/report" },
-                  { name: "事業單位改善完成率一覽表", href: "/audit/report-improve-status" },
-                  { name: "各類建議改善完成率一覽表", href: "/audit/report-summary" },
-                  { name: "災害事件一覽表", href: "/audit/report-incident" }
-                ]
-              }
-            ]
-          }] : []),
-          ...(hasAuthority('KPI') ? [{
-            name: "績效指標",
-            href: "#",
-            children: [
-              {
-                name: "檢視/編輯KPI",
-                href: "#",
-                children: [
-                  { name: "製程安全管理", href: "/kpi/psm" },
-                  { name: "環保管理", href: "/kpi/ep" },
-                  { name: "能源管理", href: "/kpi/eco" }
-                ]
-              },
-              {
-                name: "改善成果",
-                href: "#",
-                children: [
-                  { name: "資料上傳", href: "/kpi/improvement-result-upload" },
-                  { name: "資料庫查詢", href: "/kpi/improvement-result-db" },
-                  { name: "Excel固定格式匯入", href: "/kpi/improvement-result-import" }
-                ]
-              },
-              { name: "改善計畫", href: "/kpi/improvement-plan" }
-            ]
-          }] : [])
-        ]
-      }
-    ] : []),
-    {
-      name: "說明",
-      href: "#",
-      children: [
-        { name: "操作說明", href: "/help" }
-      ]
-    },
-    ...(isAuthenticated ? [{
-      name: userEmail || "用戶",
-      href: "#",
-      children: [
-        { name: "個人資料", href: "/profile" },
-        {
-          name: "登出",
-          href: "#",
-          onClick: () => {
-            logout();
-            setMobileMenuOpen(false);
-          }
-        }
-      ]
-    }] : [
-      { name: "登入", href: "/login" }
-    ])
+    { name: "產品資訊", href: "/products",children:[
+        {name:"最新產品",href: "/products/new"},
+        {name:"熱門產品",href: "/products/hot"},
+
+      ] },
+    { name: "聯絡我們", href: "contact"},
+    { name: "關於我們", href:"/about"},
+    { name: "context", href: "/context" ,children:[
+        {name : "edit" , href: "/context/edit"},
+        {name : "list" , href: "/context/list"},
+      ]},
+
   ];
+
 
   const DropdownMenuItem = ({ item }: { item: NavItem }) => {
     const [isOpen, setIsOpen] = useState(false);

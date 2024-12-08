@@ -48,7 +48,7 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       headers: {
         'Accept': 'application/json',
       },
-      // 移除 body，因為參數已經在 URL 中
+
     });
 
     if (!response.ok) {
