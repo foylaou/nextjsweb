@@ -1,7 +1,7 @@
 import "./globals.css";
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-
+import { AntdRegistry } from '@ant-design/nextjs-registry';
 export default function RootLayout({
   children,
 }: {
@@ -13,7 +13,7 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <Navbar />
           <main className="flex-grow">
-            {children}
+<AntdRegistry>{children}</AntdRegistry>
           </main>
           <Footer />
         </div>

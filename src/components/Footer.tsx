@@ -1,31 +1,17 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-bold mb-4">聯絡資訊</h3>
-            <p>電話：(02) 1234-5678</p>
-            <p>信箱：contact@example.com</p>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-4">快速連結</h3>
-            <ul>
-              <li><a href="/about" className="hover:text-gray-300">關於我們</a></li>
-              <li><a href="/privacy" className="hover:text-gray-300">隱私政策</a></li>
-              <li><a href="/terms" className="hover:text-gray-300">使用條款</a></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-4">追蹤我們</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-gray-300">Facebook</a>
-              <a href="#" className="hover:text-gray-300">Twitter</a>
-              <a href="#" className="hover:text-gray-300">Instagram</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <footer className="bg-gray-800 text-white py-6 px-4 text-center">
+      <strong className="block mb-4">
+        ※本網所提供之電子檔案部分為 .PDF 格式，如無法閱讀，請自行下載安裝免費軟體「中文版 Adobe PDF Reader」。
+      </strong>
+      <p className="text-sm mb-4">
+        本網站由經濟部產業發展署「工業安全智慧化輔導計畫」之委辦單位「中華民國工業安全衛生協會」維護管理。
+        <br />
+        This site, sponsored by IDA/MOEA, was created and is maintained by the ISHA.
+      </p>
+      <p className="text-sm">
+        本網站最佳瀏覽環境為 1024 x 768 視窗模式以上，支援 IE 11.0 含以上版本、Firefox、Chrome、Safari 等最新版本瀏覽器。
+      </p>
     </footer>
-  )
+  );
 }
